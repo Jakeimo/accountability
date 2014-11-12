@@ -8,12 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <link rel="stylesheet" href="css/bootstrap.min.css">
-      <style>
-          body {
-              padding-top: 50px;
-              padding-bottom: 20px;
-          }
-      </style>
+   
       <link rel="stylesheet" href="css/bootstrap-theme.min.css">
       <link rel="stylesheet" href="css/main.css">
       
@@ -23,6 +18,7 @@
   </head>
   <body>
     <div class="container">
+      <div role="alert" style="display:none; text-align:center" id="alertResponse"></div>
      <form role="form" action="action.php" method="post" id="aForm">
       <div class="row">
         <div class="form-group">
@@ -75,6 +71,22 @@
       document.getElementById('chooseDate').valueAsDate = new Date();
     </script>
     <script>
+    var re = new RegExp("Insertion=(fail|success)");
+    value = re.exec(document.cookie);
+    if(value !== null){
+      var result = value[1];
+      $("#alertResponse").show();
+      if(result === "success"){
+        $("#alertResponse").addClass( "alert alert-success" );
+        $("#alertResponse").append("Data has been submitted");
+      } else if(result === "fail"){
+        $("#alertResponse").addClass( "alert alert-danger" );
+        $("#alertResponse").append("There was an error submitting the data");
+      }
+    }
+      
+    </script>
+    <script>
       $("#aForm").validate({
         rules: {
           chooseDate: {
@@ -92,7 +104,7 @@
           questionSpend: {
             required: true
 
-          }
+          },
           questionHappiness: {
             required: true
           }

@@ -29,5 +29,13 @@ $stmtHappy->execute();
 $stmtMoney->execute();
 $stmtStudy->execute();
 
+if($mysqli->affected_rows != 1){
+	//printf("Insertion failed. Rows Affected: %d\n", $mysqli->affected_rows);
+	setcookie('Insertion', 'fail', time() + 2);
+	header('Location: index.html'); 
+} else {
+	setcookie('Insertion', 'success', time() + 2);
+	header('Location: index.html');
+}
 ?>
 
