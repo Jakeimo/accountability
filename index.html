@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <style>
+          body {
+              padding-top: 50px;
+              padding-bottom: 20px;
+          }
+      </style>
+      <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="css/main.css">
+      
+      <script src="js/vendor/jquery-1.11.1.min.js"></script>
+      <script src="js/jquery.validate.js"></script>
+      <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+     <form role="form" action="action.php" method="post" id="aForm">
+      <div class="row">
+        <div class="form-group">
+          <label for="date">Today is: </label>
+          <input required type="date" class="form-control" id="chooseDate" name="date">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label for="questionStudy">How many hours did you study for?</label>
+          <input required type="text" class="form-control" id="questionStudy" name="study">
+        </div>
+      </div>
+        <div class="row">
+          <label for="questionSpend">How much money did you spend?</label>
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <input required type="text" class="form-control" id="questionSpend" name="spend">
+        </div>
+      </div>
+        <div class="row">
+          <label for="questionEarn">How much money did you earn?</label>
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <input required type="text" class="form-control" id="questionEarn" name="earnt">
+        </div>
+      </div>
+        <div class="row">
+            <label for="questionHappiness">Rate today out of 10</label><br />
+            <select class="form-control" id="questionHappiness" name="happiness"> 
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        <div class="row">
+          <input type="submit"  class="btn btn-default"/>
+        </div>
+      </form>
+    </div>
+             
+    <script>
+      document.getElementById('chooseDate').valueAsDate = new Date();
+    </script>
+    <script>
+      $("#aForm").validate({
+        rules: {
+          chooseDate: {
+            required: true,
+            date: true
+          },
+          questionStudy: {
+            required: true,
+            range: [0, 24]
+          },
+          questionEarn: {
+            required: true
+
+          },
+          questionSpend: {
+            required: true
+
+          }
+          questionHappiness: {
+            required: true
+          }
+        }
+      });
+    </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+  </body>
+</html>
