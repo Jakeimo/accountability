@@ -1,5 +1,7 @@
 <?php 
-$mysqli = new mysqli("localhost", "root", "password", "personal_data_testing");
+$database = "personal_data";
+//$database = "personal_data_testing";
+$mysqli = new mysqli("localhost", "root", "password", $database);
 
 //Check Connection
 if ($mysqli->connect_errno) {
@@ -13,21 +15,11 @@ $moneyEarnt = $_POST["earnt"];
 $happy = $_POST["happiness"];
 
 //Prepare sql statements, and bind parameters
-$stmtStudy = $mysqli->prepare(
-	"INSERT INTO study (date, length) VALUES (?, ?)");
-$stmtStudy->bind_param("sd", $date, $studyLength);
+$stmt = $mysqli->prepare(
+	"INSERT INTO dayData (date, studyLength, moneySpent, moneyEarnt, happyRating) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("sdddi", $date, $studyLength, $moneySpent, $moneyEarnt, $happy);
 
-$stmtMoney = $mysqli->prepare(
-	"INSERT INTO money (date, spent, earnt) VALUES (?, ?, ?)");
-$stmtMoney->bind_param('sdd', $date, $moneySpent, $moneyEarnt);
-
-$stmtHappy = $mysqli->prepare(
-	"INSERT INTO happiness (date, rating) VALUES (?, ?)");
-$stmtHappy->bind_param('sd', $date, $happy);
-
-$stmtHappy->execute();
-$stmtMoney->execute();
-$stmtStudy->execute();
+$stmt->execute();
 
 if($mysqli->affected_rows != 1){
 	//printf("Insertion failed. Rows Affected: %d\n", $mysqli->affected_rows);
