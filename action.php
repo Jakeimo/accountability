@@ -1,9 +1,16 @@
-<?php 
-$database = "personal_data";
-//$database = "personal_data_testing";
-$mysqli = new mysqli("localhost", "root", "password", $database);
+<?php  
+//$database = "personal_data";
+$database = "personal_data_testing";
 
-//Check Connection
+/*$server = "localhost";
+$user = "root";
+$password = "password";*/
+$server = "jspi.me";
+$user = "jspikxqd";
+$password = "C8Ri_bCbOYFs2";
+$mysqli = new mysqli($server, $user, $password, $database);
+
+Check Connection
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
