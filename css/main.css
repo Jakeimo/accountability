@@ -12,8 +12,24 @@
 	padding-top:10px;
 }
 
+#menu {
+	width: 0; 
+	height: 0; 
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent; 
+	border-right:15px solid black;
 
-
+	position: fixed;
+	top: 5px;
+	right: 15px;
+	float:right;
+}
+#menuLink {
+	position: relative;
+	width: 100px;
+	padding-left: 10px;
+	top: -9px;
+}
 
 
 

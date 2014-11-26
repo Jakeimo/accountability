@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+   
+      <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="css/main.css">
+      
+      <script src="js/main.js"></script>  
+      <script src="js/vendor/jquery-1.11.1.min.js"></script>
+      <script src="js/jquery.validate.js"></script>
+      <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+  </head>
+    <body>
+      <div id="menu"></div>
+      <div class="container">
+        <div class="row">
+          <h2>Choose date range</h2>
+          <form action="#" method="get" id="chooseDates">
+            <div class="form-group">
+              <!-- TODO - Chuck these two guys in columns in single row-->
+              <label for="startDate">Choose start date</label>
+              <input required type="date" class="form-control" id="startDate" name="startDate">
+              <!--<label for="endDate">Choose end date</label>
+              <input type="date" class="form-control" id="endDate" name="endDate">-->
+            </div>
+            <input type="submit"  class="btn btn-default" id="submit"/>
+          </form>
+        </div>
+        <div class="row">
+          <table class="table table-hover" id="result">
+            
+          </table>
+        </div>
+      </div>
+
+      <script>
+        document.getElementById('startDate').valueAsDate = new Date();
+        document.getElementById('endDate').valueAsDate = new Date();
+      </script>
+      
+      <script>
+        $("#chooseDates").submit(function(){
+          $("#result").empty();
+          $.ajax({
+            type: "GET",
+            url: "view.php",
+            data: $('#chooseDates').serialize(),
+            dataType: "html",
+            success: function(msg){
+              $("#result").append(msg);
+            },
+            error: function(){
+              $("#result").append("<h1> Damnit it didn't work! </h1>");
+            }
+          });
+          return false;
+        });
+      </script>
+    </body>
+  </html>
+

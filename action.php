@@ -31,7 +31,7 @@ $dateCheckStmt->bind_result($id);
 $dateCheckStmt->fetch();
 
 if($id !== 0){ //An entry for this date has already been found
-	setcookie('Insertion', 'fail', time() + 2);
+	setcookie('Insertion', 'repeat', time() + 2);
 	header('Location: index.html'); 
 	die();
 } else { 
