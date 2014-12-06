@@ -21,14 +21,14 @@ $stmt = $mysqli->prepare(
 $stmt->bind_param("s", $weekAgo);
 $stmt->execute();
 //sql doesn't like the syntax or something here, not sure why
-$stmt->bind_result($id, $date, $sLenght, $mSpent, $mEarnt, $hRating);
+$stmt->bind_result($id, $date, $sLength, $mSpent, $mEarnt, $hRating);
 
 $resultCount = 0; $totalSpent = 0; $totalEarnt = 0; $totalStudy = 0; $avgHappy = 0; $happyCount = 0;
 while($stmt->fetch()){
  	$resultCount++;
  	$totalSpent += $mSpent;
  	$totalEarnt += $mEarnt;
- 	$totalStudy += $slength;
+ 	$totalStudy += $sLength;
  	$happyCount += $hRating;
 }
 $avgHappy = round($happyCount / $resultCount, 2);
