@@ -2,18 +2,16 @@
 header("Cache-Control: no-cache"); 
 //$database = "personal_data";
 //$database = "personal_data_testing";
-//$database = "jspikxqd_personal_data";
-$database = "jspikxqd_personal_data_testing";
+$database = "jspikxqd_personal_data";
+//$database = "jspikxqd_personal_data_testing";
 
-$server = "localhost";
-/*$user = "root";
+/*$server = "localhost";
+$user = "root";
 $password = "password";*/
 $user = "jspikxqd";
 $password = "C8Ri_bCbOYFs2"; 
 $mysqli = new mysqli($server, $user, $password, $database);
 
-
-$mysqli = new mysqli($server, $user, $password, $database);
 
 //Check Connection
 if ($mysqli->connect_errno) {
@@ -30,7 +28,7 @@ if (is_ajax()) {
 				"SELECT * 
 				FROM dayData 
 				WHERE date <= ?
-				ORDER BY date ASC");
+				ORDER BY date DESC");
 		$stmt->bind_param("s", $startDate);
 		$stmt->execute();
 		//sql doesn't like the syntax or something here, not sure why
