@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="css/bootstrap-theme.min.css">
       <link rel="stylesheet" href="css/main.css">
       
-      <script src="js/main.js"></script>  
+      <script src="js/custom.js"></script>  
       <script src="js/vendor/jquery-1.11.1.min.js"></script>
       <script src="js/jquery.validate.js"></script>
       <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -25,14 +25,31 @@
           <h2>Choose date range</h2>
           <form action="#" method="get" id="chooseDates">
             <div class="form-group">
-              <!-- TODO - Chuck these two guys in columns in single row-->
               <label for="startDate">Choose start date</label>
-              <input required type="date" class="form-control" id="startDate" name="startDate">
-              <!--<label for="endDate">Choose end date</label>
-              <input type="date" class="form-control" id="endDate" name="endDate">-->
-            </div>
-            <input type="submit"  class="btn btn-default" id="submit"/>
+              <div id="submit-align">
+                <input type="submit"  class="btn btn-default" id="submit" style="float:right"/>
+              </div>
+              <div id="form-input-date">
+                <input required type="date" class="form-control" id="startDate" name="startDate" style="width:100%">
+              </div> 
+            </div>   
           </form>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <form action="#" method="get" id="getWeek">
+              <div class="form-group">
+                <input type="submit"  class="btn btn-default centre" id="week" value="Previous Week" style="float:none"/>
+              </div>
+            </form>
+          </div>
+          <div class="col-xs-6">
+            <form action="#" method="get" id="getMonth">
+              <div class="form-group">
+                <input type="submit"  class="btn btn-default centre" id="month" value="Previous Month"/>
+              </div>
+            </form>
+          </div>
         </div>
         <div class="row">
           <table class="table table-hover" id="result">
@@ -43,7 +60,6 @@
 
       <script>
         document.getElementById('startDate').valueAsDate = new Date();
-        document.getElementById('endDate').valueAsDate = new Date();
       </script>
       
       <script>
@@ -53,6 +69,42 @@
             type: "GET",
             url: "view.php",
             data: $('#chooseDates').serialize(),
+            dataType: "html",
+            success: function(msg){
+              $("#result").append(msg);
+            },
+            error: function(){
+              $("#result").append("<h1> Damnit it didn't work! </h1>");
+            }
+          });
+          return false;
+        });
+      </script>
+      <script>
+        $("#getWeek").submit(function(){
+          $("#result").empty();
+          $.ajax({
+            type: "GET",
+            url: "viewWeek.php",
+            data: $('#chooseDates').serialize(),
+            dataType: "html",
+            success: function(msg){
+              $("#result").append(msg);
+            },
+            error: function(){
+              $("#result").append("<h1> Damnit it didn't work! </h1>");
+            }
+          });
+          return false;
+        });
+      </script>
+      <script>
+        $("#getMonth").submit(function(){
+          $("#result").empty();
+          $.ajax({
+            type: "GET",
+            url: "viewMonth.php",
+            data: $('#getMonth').serialize(),
             dataType: "html",
             success: function(msg){
               $("#result").append(msg);
