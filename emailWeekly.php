@@ -1,14 +1,14 @@
 <?php
 //$database = "personal_data";
-$database = "personal_data_testing";
-//$database = "jspikxqd_personal_data";
+//$database = "personal_data_testing";
+$database = "jspikxqd_personal_data";
 //$database = "jspikxqd_personal_data_testing";
 
 $server = "localhost";
-$user = "root";
-$password = "password";
-//$user = "jspikxqd";
-//$password = "C8Ri_bCbOYFs2"; 
+//$user = "root";
+//$password = "password";
+$user = "jspikxqd";
+$password = "C8Ri_bCbOYFs2"; 
 $mysqli = new mysqli($server, $user, $password, $database);
 
 $weekAgo = date("Y-m-d", strtotime("-1 week"));
@@ -32,7 +32,14 @@ while($stmt->fetch()){
  	$happyCount += $hRating;
 }
 $avgHappy = round($happyCount / $resultCount, 2);
-echo "Results returned: " . $resultCount . "<br />" . "Total amount spent: " . $totalSpent . "<br />" .
-		"Total earnt: " . $totalEarnt . "<br />" . "Total study: " . $totalStudy . "<br />" .
+
+
+
+echo "Results returned: " . $resultCount . " 
+		" . "Total amount spent: " . $totalSpent . " 
+		" .
+		"Total earnt: " . $totalEarnt . " 
+		" . "Total study: " . $totalStudy . " 
+		" .
 		"Average happiness rating: " . $avgHappy;
 ?>
