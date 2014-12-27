@@ -5,8 +5,8 @@ header("Cache-Control: no-cache");
 $database = "jspikxqd_personal_data";
 //$database = "jspikxqd_personal_data_testing";
 
-/*$server = "localhost";
-$user = "root";
+$server = "localhost";
+/*$user = "root";
 $password = "password";*/
 $user = "jspikxqd";
 $password = "C8Ri_bCbOYFs2"; 

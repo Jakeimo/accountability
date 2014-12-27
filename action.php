@@ -1,8 +1,8 @@
 <?php  
 //$database = "personal_data";
 //$database = "personal_data_testing";
-//$database = "jspikxqd_personal_data";
-$database = "jspikxqd_personal_data_testing";
+$database = "jspikxqd_personal_data";
+//$database = "jspikxqd_personal_data_testing";
 
 $server = "localhost";
 /*$user = "root";
